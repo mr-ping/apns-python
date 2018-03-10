@@ -8,13 +8,14 @@ def read(fname):
 setup(
     name="apns-python",
     packages=["apns_python"],
-    version="0.1.1",
+    version="0.1.2",
     description="A Python client for Apple Push Notification service(APNs)",
     author="Ping",
     author_email="yuanta11@gmail.com",
     url="https://github.com/mr-ping/apns-python",
     download_url="https://github.com/mr-ping/apns-python/archive/master.zip",
     keywords=["apns", "python", "python2", "http2", "http2.0"],
+    install_requires=["hyper", "ujson"],
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: 2",
