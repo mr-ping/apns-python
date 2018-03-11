@@ -41,12 +41,14 @@ class Client(object):
         apns_id = resp.headers.get('apns-id')
         if status_code == 200:
             result = dict(
+                device_token=device_token,
                 session_id=session_id,
                 apns_id=apns_id,
                 status_code=resp.status)
         else:
             resp_body = ujson.loads(resp.read())
             result = dict(
+                device_token=device_token,
                 session_id=session_id,
                 apns_id=apns_id,
                 status_code=status_code,
