@@ -1,7 +1,34 @@
 # apns-python package
 
+**apns-python** is a package to help you to commmunicate with Apple Push Notification Service (APNs).
 
-## Demonstration
+
+It support the HTTP2.0 protocol with APNs.
+
+## Precondition
+
+- Python 2.7.9 and later
+- Python 3.5 and later
+
+
+## Installation
+
+Make sure you have pip installed.
+If not, **install pip**
+
+```
+$ wget https://bootstrap.pypa.io/get-pip.py
+$ python get-pip.py
+```
+
+**Install apns-python:**
+
+```
+$ pip install apns-python
+```
+
+
+## Demo
 
 ```python
 from apns_python import Alert, APS, Payload, Headers, Client
@@ -24,13 +51,13 @@ payload = Payload(
 headers = Headers(
     custom_fields={"Content-Type": "application/json; charset=utf-8"})
 
-CHEM_APNS_CLIENT = Client(
+client = Client(
     push_mode='dev',
     secure=True,
     cert_location='/your/apns/certfile.pem',
     cert_password='APNsCertPassword')
 
-result = client.send(device_token, headers, payload)
+result = client.send(target_device_token, headers, payload)
 
 print result
-'''
+```
