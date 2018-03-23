@@ -31,6 +31,7 @@ class Client(object):
             self.apns_host, secure=secure, ssl_context=ssl_context_obj)
 
     def send(self, device_token, headers, payload):
+        """Send the notification to apns."""
         body = ujson.dumps(payload)
         complete_apns_path = os.path.join(Client.apns_path, device_token)
         session_id = self.conn.request(

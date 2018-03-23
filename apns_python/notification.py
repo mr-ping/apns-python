@@ -1,4 +1,5 @@
 class BaseMsg(dict):
+    """The BaseClass of all objects in notification payload."""
     apns_keys = []
 
     def __init__(self, custom_fields={}, **apn_args):
@@ -16,6 +17,7 @@ class BaseMsg(dict):
 
 
 class Alert(BaseMsg):
+    """The alert piece in aps section."""
     apns_keys = [
         'title', 'body', 'title-loc-key', 'title-loc-key', 'action-loc-key',
         'loc-key', 'loc-args', 'launch-image']
@@ -27,6 +29,7 @@ class Alert(BaseMsg):
 
 
 class APS(BaseMsg):
+    """The aps section in the payload."""
     apns_keys = [
         'mutable-content', 'alert', 'badge', 'sound', 'content-available',
         'category', 'thread-id']
@@ -37,12 +40,14 @@ class APS(BaseMsg):
 
 
 class Payload(BaseMsg):
+    """The whole payload to send to APNs as the request body."""
     def __init__(self, aps, **apn_args):
         self.__setitem__('aps', aps)
         super(Payload, self).__init__(**apn_args)
 
 
 class Headers(BaseMsg):
+    """The request headers to send to APNs."""
     apns_keys = [
         'authorization', 'apns-id', 'apns-expiration', 'apns-priority',
         'apns-topic', 'apns-collapse-id']
