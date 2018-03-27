@@ -1,3 +1,6 @@
+""" This module contains all notification payload objects."""
+
+
 class BaseMsg(dict):
     """The BaseClass of all objects in notification payload."""
     apns_keys = []

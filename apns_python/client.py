@@ -10,6 +10,7 @@ class Client(object):
     prd_apns_host = 'api.push.apple.com:443'
     apns_method = 'POST'
     apns_path = '/3/device/'
+
     def __init__(
             self, push_mode='dev', secure=True, cert_location=None,
             cert_password=None):
@@ -31,7 +32,13 @@ class Client(object):
             self.apns_host, secure=secure, ssl_context=ssl_context_obj)
 
     def send(self, device_token, headers, payload):
-        """Send the notification to apns."""
+        """Send the notification to apns.
+
+        Keyword arguments:
+        device_token -- The target device token which you want APNs send to.
+        headers -- The notification.Headers instance
+        payload -- The notification.Paylaod instance
+        """
         body = ujson.dumps(payload)
         complete_apns_path = os.path.join(Client.apns_path, device_token)
         session_id = self.conn.request(
