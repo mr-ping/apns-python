@@ -17,5 +17,5 @@ You can use either Alert, APS, Payload, Headers and Client objects directly or
 use them with their module prefix like notification.Alert
 """
 
-from notification import Alert, APS, Payload, Headers
-from client import Client
+from .notification import Alert, APS, Payload, Headers
+from .client import Client
