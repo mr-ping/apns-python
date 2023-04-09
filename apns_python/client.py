@@ -12,7 +12,7 @@ class Client(object):
     apns_path = '/3/device/'
 
     def __init__(
-            self, push_mode='dev', secure=True, cert_location=None,
+            self, push_mode='dev', secure=True, cert_chain_location=None, cert_location=None,
             cert_password=None):
         if push_mode == 'dev':
             self.apns_host = Client.dev_apns_host
@@ -23,8 +23,8 @@ class Client(object):
                 'The push_mode param must be "dev" or "prd", not {0}'.format(
                     push_mode))
             raise ValueError(err_msg)
-        if cert_location:
-            ssl_context_obj = tls.init_context(
+        if cert_location and cert_chain_location:
+            ssl_context_obj = tls.init_context(cert_path=cert_chain_location,
                 cert=cert_location, cert_password=cert_password)
         else:
             ssl_context_obj = None
