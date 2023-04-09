@@ -13,7 +13,7 @@ class Client(object):
 
     def __init__(
             self, push_mode='dev', secure=True, cert_location=None,
-            cert_password=None, conn_timeout, request_timeout):
+            cert_password=None):
         if push_mode == 'dev':
             self.apns_host = Client.dev_apns_host
         elif push_mode == 'prd':
@@ -29,8 +29,7 @@ class Client(object):
         else:
             ssl_context_obj = None
         self.conn = HTTP20Connection(
-            self.apns_host, secure=secure, ssl_context=ssl_context_obj,
-            timeout=(conn_timeout, request_timeout))
+            self.apns_host, secure=secure, ssl_context=ssl_context_obj)
 
     def send(self, device_token, headers, payload):
         """Send the notification to apns.
