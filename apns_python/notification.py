@@ -12,7 +12,7 @@ class BaseMsg(dict):
 
     def update_keys(self, apn_args, msg_obj_keys):
         """Transform the input keys with '_' to apns format with '-'."""
-        for k, v in apn_args.iteritems():
+        for k, v in apn_args.items():
             formated_k = k.replace('_', '-')
             if formated_k in msg_obj_keys:
                 del apn_args[k]
